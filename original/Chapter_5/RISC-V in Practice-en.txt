@@ -1,0 +1,71 @@
+ ﻿Hello, and welcome to this tutorial on compiling RISC-V assembly instructions.
+ This video will walk you through the steps of compilation, but not setting up your environment.
+ Feel free to simply follow along if compiling the Linux kernel and application suites like BusyBox are not something that’s familiar to you.
+ First, let’s take a look at the environment we have set up.
+ We will need several programs to run our "Hello World" application.
+ QEMU will emulate the RISC-V architecture for us.
+ The Linux kernel will be loaded using QEMU.
+ We will generate a small initramfs to provide a file system and utilities to help run our application.
+ And lastly, we will compile a "Hello World" application ourselves.
+ We’re running Ubuntu 20.04, and we have installed the package containing the RISC-V compilation tools like GCC.
+ We have also installed QEMU from the Ubuntu repositories, its current version is 4.2.1.
+ This version supports RISC-V and OpenSBI which we will use to load the kernel with QEMU.
+ We also have two pieces of software that we’ve already compiled, the Linux kernel at version 5.7 and BusyBox, a software suite providing many common utilities.
+ I’ve created a couple of scripts to help us out today.
+ One script generates an initramfs by copying symlinks to BusyBox into a simple zip format that the kernel expects.
+ There is also a script to run QEMU.
+ Now that we’ve gone over the environment, let’s have a look at the RISC-V assembly code.
+ Here we see a very simple "Hello World" application written in RISC-V assembly instructions.
+ If this is your first time working with assembly code, you can pause this video anytime to reference either the RISC-V specifications, the ASM manual, or the ABI documentation.
+ These resources provide context to many of the steps we take here in programming assembly language.
+ Let’s go through this code one line at a time.
+ First, we need to inform the linker where the start address of our application is located.
+ In this case, we’ve labeled it "start" and it contains our first set of instructions.
+ The next chunk of code prints "Hello World" to the standard output.
+ We need to call the Linux system call "write" to accomplish this.
+ We use the ABI documentation in order to understand the calling convention that the Linux kernel will expect.
+ The "write" function will take three parameters: an output file descriptor, a string, and the length of that string.
+ We store these parameters in registers a0, a1, and a2, respectively.
+ We then tell the operating system to execute the system call "write" by storing the code 64 into register a7 and calling the ECALL instruction.
+ Let’s take a quick look at each of these three instructions.
+ The first instruction we use is the "add immediate" instruction.
+ This makes the code a bit more readable and, as we will see, there are several ways of writing this program.
+ In this first instruction, we add one (1) to the zero register and store the result of that operation in register a0.
+ In this case, one (1) is the code for "standard output", the file descriptor.
+ This is the place we would like to write our "Hello World" message.
+ The second instruction is the "load address" instruction.
+ Here, we load the address of our string "Hello World" into register a1.
+ The length of the string (13) goes into register a2, and we execute our write system call.
+ Lastly, we need to exit the program correctly if we want to follow proper conventions.
+ We do this by loading zero into the a0 register and calling the Linux system call for "terminate program" which is code 93.
+ Now let’s take a look at how we compile the application.
+ There are a couple of ways we can compile this application.
+ We can either use GCC or we can call the assembler and the linker directly.
+ I have written a script here to go ahead and call those for me.
+ So let’s go ahead and call that script.
+ You will see we have our source file "rv-hello.s", and we are going to call the script.
+ That gives me an object file and the executable.
+ Taking a look at the executable, it is indeed a RISC-V 64 bit executable.
+ And let's go ahead and see how the compilation went.
+ Looking at objdump, we can see that those "add immediate" instructions were replaced by "load immediate" instructions.
+ This is something that the assembler did.
+ And I think you can see here that the code that we wrote is a little bit easier to understand.
+ We can also see by using objdump, the "Hello World" string that is stored.
+ So now that we have compiled this program, let’s go ahead and put it into our initramfs, and actually run the application.
+ As mentioned before, I’ve created a simple initramfs that we are going to use as our file system. Let’s take a look at it.
+ So the initramfs is quite simple and really just contains all the symlinks we need going to BusyBox for the utilities that we will want when we launch our system.
+ It has a simple init, and we’ve gone ahead and copied in our "rv-hello" executable.
+ So let's go ahead and run QEMU and execute this executable using emulation.
+ Let’s start by calling our script and generating our initramfs.
+ Now that we have that zip file, let’s take a look at the script that we use to actually run QEMU.
+ This command will be different depending on your system setup, but you will see we use the "no graphic" option, we pass it the kernel that we compiled, we also pointed at BusyBox and give it a BIOS.
+ And lastly, we pointed at the initramfs that zip file, so that we have an init executable for Linux to hand off to, and a set of utilities to run once we booted our system.
+ Let’s go ahead and run QEMU.
+ Okay, rather quickly, we’ve booted into our system.
+ So we have BusyBox which gives us several utilities including "ls" and so we get to actually take a look at our file system.
+ Here you can see we have the "rv-hello" executable.
+ So let’s go ahead and run it...
+ ...and as expected, we see "Hello World".
+ This tutorial showed you the basics of RISC-V assembly code, but there’s a lot more left to learn.
+ I highly recommend that you take a look at the specifications and the ASM manual, and set up your own system in a way in which you can experiment with assembly code and learn more.
+ Thanks very much.

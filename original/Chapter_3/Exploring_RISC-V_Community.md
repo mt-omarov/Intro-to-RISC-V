@@ -1,0 +1,20 @@
+# Exploring the RISC-V Community
+## Culture of Community Engagement
+RISC-V is, at its heart, a community organization, meaning that it operates primarily as a group of motivated organizations and individuals pursuing a common goal by working in concert rather than as adversaries, even if those organizations compete with each other in other areas. This arrangement has proven dramatically successful in many software projects, including the Linux operating system that is by far the most successful software project in history. The open source methodology works.
+
+RISC-V is bringing this methodology to the hardware world by creating a culture of community engagement and participation around the RISC-V ISA and related specifications, testing and debugging frameworks, development software, and more. As of this writing (February 2021), there are well over 2,000 people working on RISC-V, representing over 230 organizations, and with many people representing themselves. RISC-V employs a few people as staff to help shepherd this process in a neutral capacity, but the vast bulk of effort on RISC-V comes from its community.
+
+RISC-V provides the tools and methods to collaborate, but it also creates some guardrails around intellectual property as well as personal conduct, setting expectations for the community to get along.
+
+## Collaboration and Contribution
+As you will find in this chapter, RISC-V has a robust technical organization with a hierarchy of working groups and committees, along with many communication and collaboration tools to support them. The real point, though, is that contribution is a key function to the success of RISC-V, as it literally would not exist or prosper without the effort of its members.
+
+## Intellectual Property Policy
+At the core of RISC-V membership is the [membership agreement](https://riscv.org/wp-content/uploads/2020/03/RISC-V_Membership_Agreement_NFS.pdf), a contract that all members sign. It includes the RISC-V Intellectual Property policy set forth in Appendix A of the [Internal Regulations](https://riscv.org/wp-content/uploads/2020/03/RISC-V-International-Regulations-03-11-2020.pdf). The goal of this policy is to protect RISC-V members as well as the RISC-V IP itself.
+
+In essence, this policy creates a framework of protection around artifacts created by (or contributed to) RISC-V International in order to maximize the benefits of collaboration and to minimize the risks on behalf of every member. The policy assigns the rights of those artifacts to RISC-V International, who then provides them to the public under an open license (see section 6). In particular, section 7 provides protection from lawsuits related to the IP created in the collaborative processes outlined and managed by RISC-V.
+
+## Code of Conduct and Privacy
+As a community organization, RISC-V is made up of people, not all of whom hold the same ideas about conduct and privacy. RISC-V, along with nearly all community organizations, has instituted a [Code of Conduct](https://riscv.org/community/community-code-of-conduct/) that is applicable to the entire community. In essence, this Code of Conduct sets out the standards of behavior that are acceptable to the community, as well as indications of what could happen if they are not followed, and a reporting mechanism so that people can feel comfortable reporting issues knowing that their privacy will be respected. Note that this is also true for in-person and virtual events, which have their own, more detailed policy.
+
+RISC-V also follows the Linux Foundation’s [privacy policy](https://www.linuxfoundation.org/legal/privacy-policy), which outlines the information collected by RISC-V related to personal identity, and how we treat this information. RISC-V does not sell personal information to anyone. Individuals in leadership positions and those who participate actively may become known through the transparent collaborative working processes of the organization, particularly if they also engage in public speaking at events. However, in all cases we treat your personal information as we treat our own, with respect and privacy topmost in mind.
